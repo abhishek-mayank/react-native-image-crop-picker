@@ -67,6 +67,7 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
     private static final String E_ERROR_WHILE_CLEANING_FILES = "E_ERROR_WHILE_CLEANING_FILES";
 
     private String mediaType = "any";
+    private String mediaSource = "camera";
     private boolean multiple = false;
     private boolean includeBase64 = false;
     private boolean includeExif = false;
@@ -119,6 +120,7 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
 
     private void setConfiguration(final ReadableMap options) {
         mediaType = options.hasKey("mediaType") ? options.getString("mediaType") : "any";
+        mediaSource = options.hasKey("mediaSource") ? options.getString("mediaSource") : "any";
         multiple = options.hasKey("multiple") && options.getBoolean("multiple");
         includeBase64 = options.hasKey("includeBase64") && options.getBoolean("includeBase64");
         includeExif = options.hasKey("includeExif") && options.getBoolean("includeExif");
@@ -340,7 +342,7 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
 
     private void initiatePicker(final Activity activity) {
         try {
-            final Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+            final Intent galleryIntent = new Intent(Intent.ACTION_PICK, Media.EXTERNAL_CONTENT_URI);
 
             if (cropping || mediaType.equals("photo")) {
                 galleryIntent.setType("image/*");
