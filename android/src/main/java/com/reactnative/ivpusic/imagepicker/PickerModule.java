@@ -344,6 +344,7 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
     private void initiatePicker(final Activity activity) {
         try {
             final Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(galleryIntent, IMAGE_PICKER_SELECT);
 
             if (cropping || mediaType.equals("photo")) {
                 galleryIntent.setType("image/*");
