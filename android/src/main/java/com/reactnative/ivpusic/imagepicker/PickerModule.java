@@ -360,7 +360,7 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
             galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
 
             //final Intent chooserIntent = Intent.createChooser(galleryIntent, "Pick an image");
-            activity.startActivityForResult(chooserIntent, IMAGE_PICKER_SELECT);
+            activity.startActivityForResult(galleryIntent, IMAGE_PICKER_SELECT);
         } catch (Exception e) {
             resultCollector.notifyProblem(E_FAILED_TO_SHOW_PICKER, e);
         }
